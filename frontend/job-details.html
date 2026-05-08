@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Details | LCC</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body data-page="jobs">
+
+  <div data-include="header"></div>
+
+  <section class="app-shell">
+    <div class="app-container">
+
+      <div style="margin-bottom: 24px;">
+        <a href="jobs.html" class="btn-secondary btn-sm">← All Jobs</a>
+      </div>
+
+      <div id="jobDetail">
+        <div class="loader">Loading job...</div>
+      </div>
+    </div>
+  </section>
+
+  <div data-include="footer"></div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="js/include.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/job-details.js"></script>
+</body>
+</html>

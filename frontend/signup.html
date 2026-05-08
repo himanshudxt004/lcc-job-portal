@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Account | LCC Job Portal</title>
+  <meta name="description" content="Sign up on Lead Connects Career — choose Job Seeker or Employer and start in minutes." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/auth.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body data-page="signup">
+
+  <section class="auth-wrap">
+    <div class="auth-card">
+      <div class="auth-head">
+        <a href="index.html" class="logo" style="justify-content:center; display:inline-flex; margin-bottom:14px;">
+          <div class="logo-icon">L</div>
+          <div class="logo-text">LCC<span>Career</span></div>
+        </a>
+        <span class="section-tag">Create Account</span>
+        <h1>Join LCC today</h1>
+        <p>One platform — recruitment for employers, careers for candidates.</p>
+      </div>
+
+      <!-- Role tabs -->
+      <div class="role-tabs" role="tablist">
+        <button type="button" class="role-tab" data-role="jobseeker"><span class="ico">👤</span> Job Seeker</button>
+        <button type="button" class="role-tab" data-role="employer"><span class="ico">🏢</span> Employer</button>
+      </div>
+
+      <div id="authFeedback" class="auth-feedback"></div>
+
+      <form id="signupForm" class="auth-form" novalidate>
+        <input type="hidden" name="role" value="jobseeker" />
+
+        <div class="form-group">
+          <label for="su-name">Full Name</label>
+          <input id="su-name" name="name" type="text" placeholder="Rahul Kumar" required />
+        </div>
+
+        <div class="form-group" data-employer-only style="display:none;">
+          <label for="su-company">Company Name</label>
+          <input id="su-company" name="company" type="text" placeholder="Acme Pvt Ltd" />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="su-email">Email</label>
+            <input id="su-email" name="email" type="email" placeholder="you@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="su-phone">Phone</label>
+            <input id="su-phone" name="phone" type="tel" placeholder="+91 98765 43210" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="su-password">Password</label>
+            <input id="su-password" name="password" type="password" placeholder="Min 6 characters" required />
+          </div>
+          <div class="form-group">
+            <label for="su-confirm">Confirm Password</label>
+            <input id="su-confirm" name="confirmPassword" type="password" placeholder="Re-enter password" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn-primary auth-cta">Create Account →</button>
+
+        <div class="auth-foot">
+          Already have an account? <a href="login.html">Sign in</a>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <div style="text-align:center; padding-bottom:30px; background:var(--navy);">
+    <a href="index.html" class="auth-back">← Back to Home</a>
+  </div>
+
+  <script>
+    // window.LCC_API_BASE = 'http://localhost:5000/api';   // override if needed
+  </script>
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+</body>
+</html>

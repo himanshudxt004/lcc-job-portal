@@ -1,0 +1,176 @@
+/* ============================================================
+   LCC — Auth pages (signup / login)
+   File: frontend/css/auth.css   (loaded after style.css)
+   ============================================================ */
+
+.auth-wrap {
+  min-height: 100vh;
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 5% 60px;
+  position: relative;
+  overflow: hidden;
+}
+.auth-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(201,168,76,0.10) 0%, transparent 45%),
+    radial-gradient(circle at 80% 70%, rgba(201,168,76,0.06) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+.auth-card {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 44px 40px;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(201,168,76,0.18);
+}
+
+.auth-head {
+  text-align: center;
+  margin-bottom: 28px;
+}
+.auth-head .section-tag {
+  display: block;
+  margin-bottom: 8px;
+}
+.auth-head h1 {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+.auth-head p {
+  font-size: 14px;
+  color: var(--gray);
+}
+
+/* Role tabs */
+.role-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--cream);
+  border-radius: var(--radius-md);
+  padding: 4px;
+  margin-bottom: 26px;
+  border: 1px solid rgba(11,31,58,0.08);
+}
+.role-tab {
+  padding: 12px 14px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-radius: var(--radius-sm);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  font-family: var(--font-body);
+}
+.role-tab:hover { color: var(--navy); }
+.role-tab.active {
+  background: var(--white);
+  color: var(--navy);
+  box-shadow: var(--shadow-sm);
+}
+.role-tab .ico { margin-right: 6px; }
+
+/* Form */
+.auth-form .form-group { margin-bottom: 16px; }
+.auth-form .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.auth-form input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid rgba(11,31,58,0.1);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 14px;
+  background: var(--cream);
+  color: var(--dark-text);
+  outline: none;
+  transition: border-color 0.2s, background 0.2s;
+}
+.auth-form input:focus {
+  border-color: var(--gold);
+  background: var(--white);
+}
+.auth-form label {
+  display: block;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--navy);
+  margin-bottom: 6px;
+  letter-spacing: 0.02em;
+}
+
+/* Feedback box */
+.auth-feedback {
+  font-size: 13px;
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  margin-bottom: 14px;
+  display: none;
+}
+.auth-feedback.error {
+  display: block;
+  background: rgba(220, 38, 38, 0.08);
+  color: #B91C1C;
+  border: 1px solid rgba(220, 38, 38, 0.25);
+}
+.auth-feedback.ok {
+  display: block;
+  background: rgba(45, 106, 79, 0.08);
+  color: #1B5E40;
+  border: 1px solid rgba(45, 106, 79, 0.25);
+}
+
+/* CTA */
+.auth-cta {
+  width: 100%;
+  margin-top: 6px;
+  justify-content: center;
+}
+
+.auth-foot {
+  text-align: center;
+  margin-top: 22px;
+  font-size: 14px;
+  color: var(--gray);
+}
+.auth-foot a {
+  color: var(--gold);
+  font-weight: 600;
+  text-decoration: none;
+}
+.auth-foot a:hover { color: var(--navy); }
+
+.auth-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 18px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  font-weight: 500;
+}
+.auth-back:hover { color: var(--gold-light); }
+
+@media (max-width: 580px) {
+  .auth-card           { padding: 32px 22px; }
+  .auth-form .form-row { grid-template-columns: 1fr; }
+}

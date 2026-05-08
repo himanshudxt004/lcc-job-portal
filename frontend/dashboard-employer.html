@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employer Dashboard | LCC</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body data-page="dashboard">
+
+  <div data-include="header"></div>
+
+  <section class="app-shell">
+    <div class="app-container">
+
+      <div class="app-head">
+        <div>
+          <h1 id="welcomeTitle">Employer Dashboard</h1>
+          <div class="sub">Post jobs, manage listings, and review applicants — all in one place.</div>
+        </div>
+        <div id="authStrip"></div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-block"><div class="num" id="statJobs">0</div><div class="label">Jobs Posted</div></div>
+        <div class="stat-block"><div class="num" id="statActive">0</div><div class="label">Active</div></div>
+        <div class="stat-block"><div class="num" id="statApplicants">0</div><div class="label">Applicants</div></div>
+        <div class="stat-block"><div class="num" id="statShortlisted">0</div><div class="label">Shortlisted</div></div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
+        <h2 style="font-family:var(--font-display); font-size:24px; color:var(--navy); font-weight:800;">My Jobs</h2>
+        <a href="post-job.html" class="btn-primary">+ Post New Job</a>
+      </div>
+
+      <div id="myJobs" class="row-list" style="margin-bottom:32px;">
+        <div class="loader">Loading your jobs...</div>
+      </div>
+
+      <h2 style="font-family:var(--font-display); font-size:24px; color:var(--navy); font-weight:800; margin-bottom:14px;">Applicants</h2>
+
+      <div class="card-block">
+        <div class="card-sub">Filter applicants by job and update their status as you review them.</div>
+        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:end; margin-bottom:18px;">
+          <div style="flex:1; min-width:240px;">
+            <label for="appFilterJob" style="display:block;font-size:11px;font-weight:600;color:var(--gray);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Filter by Job</label>
+            <select id="appFilterJob"><option value="">All Jobs</option></select>
+          </div>
+          <button id="appRefresh" class="btn-secondary btn-sm">Refresh</button>
+        </div>
+
+        <div id="applicantsList" class="row-list">
+          <div class="loader">Loading applicants...</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div data-include="footer"></div>
+  <div id="toast" class="toast"></div>
+
+  <script src="js/include.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard-common.js"></script>
+  <script src="js/dashboard-employer.js"></script>
+</body>
+</html>

@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Browse Jobs | LCC</title>
+  <meta name="description" content="Browse open job opportunities posted on LCC across IT, Banking, Healthcare, Retail and more." />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body data-page="jobs">
+
+  <div data-include="header"></div>
+
+  <section class="app-shell">
+    <div class="app-container">
+
+      <div class="app-head">
+        <div>
+          <h1>Browse Open Jobs</h1>
+          <div class="sub">Discover roles matched to your skills across LCC's partner companies.</div>
+        </div>
+        <div id="authStrip"></div>
+      </div>
+
+      <!-- Filter bar -->
+      <form class="filter-bar" id="filterBar">
+        <div>
+          <label for="f-search">Search</label>
+          <input id="f-search" name="search" type="text" placeholder="Title, company or keyword..." />
+        </div>
+        <div>
+          <label for="f-location">Location</label>
+          <input id="f-location" name="location" type="text" placeholder="Lucknow, Remote..." />
+        </div>
+        <div>
+          <label for="f-industry">Industry</label>
+          <select id="f-industry" name="industry">
+            <option value="">All</option>
+            <option>Information Technology</option>
+            <option>Banking &amp; Financial Services</option>
+            <option>Healthcare &amp; Life Sciences</option>
+            <option>Retail &amp; Consumer Goods</option>
+            <option>Manufacturing</option>
+            <option>Education</option>
+          </select>
+        </div>
+        <div>
+          <label for="f-type">Type</label>
+          <select id="f-type" name="type">
+            <option value="">All</option>
+            <option>Full-Time</option>
+            <option>Part-Time</option>
+            <option>Contract</option>
+            <option>Temporary</option>
+            <option>Internship</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-primary">Search</button>
+      </form>
+
+      <!-- Job list -->
+      <div id="jobList" class="job-list">
+        <div class="loader">Loading jobs...</div>
+      </div>
+
+      <div id="pagination" style="margin-top:32px; text-align:center;"></div>
+    </div>
+  </section>
+
+  <div data-include="footer"></div>
+
+  <div id="toast" class="toast"></div>
+
+  <script src="js/include.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/jobs.js"></script>
+</body>
+</html>

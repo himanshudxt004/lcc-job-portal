@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Seeker Dashboard | LCC</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body data-page="dashboard">
+
+  <div data-include="header"></div>
+
+  <section class="app-shell">
+    <div class="app-container">
+
+      <div class="app-head">
+        <div>
+          <h1 id="welcomeTitle">Welcome back</h1>
+          <div class="sub">Track your applications, update your profile, and find your next role.</div>
+        </div>
+        <div id="authStrip"></div>
+      </div>
+
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-block"><div class="num" id="statTotal">0</div><div class="label">Applications</div></div>
+        <div class="stat-block"><div class="num" id="statShortlisted">0</div><div class="label">Shortlisted</div></div>
+        <div class="stat-block"><div class="num" id="statReviewing">0</div><div class="label">Reviewing</div></div>
+        <div class="stat-block"><div class="num" id="statHired">0</div><div class="label">Hired</div></div>
+      </div>
+
+      <!-- Profile + Resume -->
+      <div class="card-block">
+        <h2>My Profile</h2>
+        <div class="card-sub">Keep your profile sharp — employers see this when you apply.</div>
+        <form id="profileForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pf-name">Full Name</label>
+              <input id="pf-name" name="name" type="text" />
+            </div>
+            <div class="form-group">
+              <label for="pf-phone">Phone</label>
+              <input id="pf-phone" name="phone" type="tel" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="pf-headline">Headline</label>
+              <input id="pf-headline" name="headline" type="text" placeholder="e.g. Full-Stack Developer · 2026 grad" />
+            </div>
+            <div class="form-group">
+              <label for="pf-location">Location</label>
+              <input id="pf-location" name="location" type="text" placeholder="Lucknow / Remote" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="pf-skills">Skills (comma separated)</label>
+            <input id="pf-skills" name="skills" type="text" placeholder="JavaScript, React, Node.js, MongoDB" />
+          </div>
+          <button type="submit" class="btn-primary">Save Profile</button>
+        </form>
+      </div>
+
+      <div class="card-block">
+        <h2>Resume</h2>
+        <div class="card-sub">Upload once — used automatically when you apply. PDF / DOC / DOCX up to 5 MB.</div>
+        <div id="resumeStatus" style="margin-bottom:14px; font-size:14px; color:var(--gray);"></div>
+        <form id="resumeForm">
+          <input type="file" name="resume" accept=".pdf,.doc,.docx" required />
+          <button type="submit" class="btn-primary btn-sm" style="margin-left:10px;">Upload</button>
+        </form>
+      </div>
+
+      <!-- Applications list -->
+      <div class="card-block">
+        <h2>My Applications</h2>
+        <div class="card-sub">Latest first — track status updates from employers.</div>
+        <div id="appList" class="row-list">
+          <div class="loader">Loading applications...</div>
+        </div>
+      </div>
+
+      <!-- Browse jobs CTA -->
+      <div class="card-block" style="text-align:center;">
+        <h2>Looking for more?</h2>
+        <div class="card-sub">Browse new openings posted on LCC every day.</div>
+        <a href="jobs.html" class="btn-primary">Browse All Jobs →</a>
+      </div>
+    </div>
+  </section>
+
+  <div data-include="footer"></div>
+  <div id="toast" class="toast"></div>
+
+  <script src="js/include.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/dashboard-common.js"></script>
+  <script src="js/dashboard-jobseeker.js"></script>
+</body>
+</html>
