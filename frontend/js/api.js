@@ -9,7 +9,7 @@
 (function (global) {
   'use strict';
 
-  const API_BASE   = global.LCC_API_BASE   || 'https://lcc-job-portal.onrender.com';
+  const API_BASE   = global.LCC_API_BASE   || 'https://lcc-job-portal.onrender.com/api';
   const TOKEN_KEY  = 'lcc_token';
   const USER_KEY   = 'lcc_user';
 
