@@ -131,7 +131,8 @@ You should see:
   LCC Job Portal API
   Mode:  development
   Port:  5000
-  URL:   http://localhost:5000/api/health
+  <!-- URL:   http://localhost:5000/api/health -->
+  URL: https://lcc-job-portal.onrender.com
 ==============================================
 ```
 
