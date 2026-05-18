@@ -11,6 +11,8 @@ async function connectDB() {
   try {
     const conn = await mongoose.connect(uri);
     console.log(`✓ MongoDB connected: ${conn.connection.host}/${conn.connection.name}`);
+    const ensureAdmin = require('../scripts/ensureAdmin');
+    await ensureAdmin();
   } catch (err) {
     console.error('✗ MongoDB connection error:', err.message);
     process.exit(1);

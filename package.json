@@ -1,0 +1,8 @@
+{
+  "name": "lcc-website",
+  "private": true,
+  "scripts": {
+    "start": "cd backend && npm start",
+    "install:backend": "cd backend && npm install"
+  }
+}

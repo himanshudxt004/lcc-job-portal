@@ -34,6 +34,7 @@
 
     if (isAdminPortal && roleTabsEl) {
       roleTabsEl.style.display = 'none';
+      if (roleInput) roleInput.value = '';
       const h = document.querySelector('.auth-head h1');
       if (h) h.textContent = 'Admin Sign In';
       const p = document.querySelector('.auth-head p');

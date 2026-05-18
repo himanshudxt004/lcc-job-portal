@@ -4,6 +4,7 @@
 require('dotenv').config();
 
 const path        = require('path');
+const fs          = require('fs');
 const express     = require('express');
 const cors        = require('cors');
 const helmet      = require('helmet');
@@ -90,9 +91,22 @@ app.use('/api/blogs',             blogRoutes);
 app.use('/api/admin',             adminRoutes);
 app.use('/api',                   applicationRoutes); // /api/apply, /api/applications/*
 
-// ---------- 404 ----------
-app.use((req, res, next) => {
-  res.status(404).json({ ok: false, message: 'Endpoint not found: ' + req.originalUrl });
+// ---------- Static frontend (unified deploy) ----------
+const frontendPath = path.join(__dirname, '..', 'frontend');
+app.use(express.static(frontendPath, { index: 'index.html', extensions: ['html'] }));
+
+app.get('*', (req, res, next) => {
+  if (req.path.startsWith('/api')) {
+    return res.status(404).json({ ok: false, message: 'Endpoint not found: ' + req.originalUrl });
+  }
+  const rel = req.path.replace(/^\//, '');
+  if (rel && !rel.includes('..')) {
+    const htmlPath = path.join(frontendPath, rel.endsWith('.html') ? rel : rel + '.html');
+    if (fs.existsSync(htmlPath) && fs.statSync(htmlPath).isFile()) {
+      return res.sendFile(htmlPath);
+    }
+  }
+  return res.sendFile(path.join(frontendPath, 'index.html'));
 });
 
 // ---------- Error handler ----------
@@ -106,6 +120,7 @@ app.listen(PORT, () => {
   console.log(`  LCC Job Portal API`);
   console.log(`  Mode:  ${process.env.NODE_ENV || 'development'}`);
   console.log(`  Port:  ${PORT}`);
-  console.log(`  URL:   http://localhost:${PORT}/api/health`);
+  console.log(`  Site:  http://localhost:${PORT}/`);
+  console.log(`  API:   http://localhost:${PORT}/api/health`);
   console.log('==============================================');
 });

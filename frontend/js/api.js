@@ -9,7 +9,19 @@
 (function (global) {
   'use strict';
 
-  const API_BASE   = global.LCC_API_BASE   || 'https://lcc-job-portal.onrender.com/api';
+  function resolveApiBase() {
+    if (global.LCC_API_BASE) return global.LCC_API_BASE;
+    const hostname = window.location.hostname;
+    const port = window.location.port;
+    const origin = window.location.origin;
+    const isLocal = hostname === 'localhost' || hostname === '127.0.0.1';
+    if (isLocal && ['5500', '5501', '8080', ''].includes(port)) {
+      return 'http://localhost:5000/api';
+    }
+    return origin + '/api';
+  }
+
+  const API_BASE = resolveApiBase();
   const TOKEN_KEY  = 'lcc_token';
   const USER_KEY   = 'lcc_user';
 

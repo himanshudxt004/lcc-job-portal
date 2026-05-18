@@ -56,8 +56,8 @@ exports.login = async (req, res, next) => {
       return res.status(401).json({ ok: false, message: 'Invalid email or password.' });
     }
 
-    // Optional role guard — if frontend specified a role, enforce it
-    if (role && user.role !== role) {
+    // Optional role guard — admins can sign in from any tab; others must match
+    if (role && user.role !== 'admin' && user.role !== role) {
       return res.status(403).json({
         ok: false,
         message: `This account is registered as ${user.role}, not ${role}. Please switch login type.`
