@@ -24,16 +24,20 @@
       </div>
       <h1>We Don't Just <span>Place</span> Talent — We <span>Build</span> It.</h1>
       <p>Lead Connects Career (LCC) is an education-driven recruitment &amp; training organisation. We bridge the gap between college and career — giving students industry-ready skills while delivering pre-qualified talent to employers across IT, Healthcare, BFSI and Retail.</p>
+      
       <div class="hero-buttons">
-        <a href="job-details.html" class="btn-primary">Find a Job →</a>
-        <a href="job-details.html" class="btn-outline">Hire Talent</a>
+        <a href="jobs.html" class="btn-primary btn-hero-cta">Find Opportunities →</a>
+        <a href="request-hiring.html" class="btn-outline btn-hero-cta">Request Hiring Support</a>
       </div>
     </div>
 
     <!-- Hero Image Panel -->
     <div class="hero-image-panel">
-      <div class="hero-image-wrap">
-        <img src="images/hero-banner.png" alt="LCC Professionals collaborating" class="hero-img" />
+      <div class="hero-image-wrap hero-picture-wrap">
+        <picture>
+          <source media="(max-width: 768px)" srcset="images/hero-banner-mobile.png" />
+          <img src="images/hero-banner.png" alt="LCC Professionals collaborating" class="hero-img" />
+        </picture>
         <div class="hero-img-glow"></div>
       </div>
       <div class="hero-stats-inline">
@@ -74,6 +78,28 @@
       <span class="ticker-item">Hospitality</span>
     </div>
   </div>
+
+  <!-- ========== IMPACT STATS ========== -->
+  <section class="block stats-band">
+    <div class="stats-band-grid">
+      <div class="stats-band-item reveal">
+        <div class="stats-band-num" data-counter data-target="2500" data-suffix="+">2500+</div>
+        <div class="stats-band-label">Candidates Placed</div>
+      </div>
+      <div class="stats-band-item reveal">
+        <div class="stats-band-num" data-counter data-target="180" data-suffix="+">180+</div>
+        <div class="stats-band-label">Hiring Partners</div>
+      </div>
+      <div class="stats-band-item reveal">
+        <div class="stats-band-num" data-counter data-target="98" data-suffix="%">98%</div>
+        <div class="stats-band-label">Success Rate</div>
+      </div>
+      <div class="stats-band-item reveal">
+        <div class="stats-band-num" data-counter data-target="24" data-suffix="/7">24/7</div>
+        <div class="stats-band-label">Support</div>
+      </div>
+    </div>
+  </section>
 
   <!-- ========== ABOUT (snapshot) ========== -->
   <section class="block">
@@ -186,6 +212,63 @@
     </div>
   </section>
 
+
+  <!-- ========== FEATURED JOBS ========== -->
+  <section class="block cream" id="featured-jobs">
+    <div class="section-head">
+      <div class="section-tag">Open Roles</div>
+      <div class="section-tag">Open Roles</div>
+      <div class="section-title">Featured Opportunities</div>
+      <div class="section-sub center-sub">Curated roles managed by LCC recruitment consultants.</div>
+    </div>
+    <div id="featuredJobsGrid" class="jobs-grid-home">
+      <div class="loader">Loading featured jobs...</div>
+    </div>
+    <div style="text-align:center;margin-top:40px;">
+      <a href="jobs.html" class="btn-primary">View All Jobs →</a>
+    </div>
+  </section>
+
+  <!-- ========== TRUSTED PARTNERS ========== -->
+  <section class="block partners-section">
+    <div class="section-head">
+      <div class="section-tag">Trusted By</div>
+      <div class="section-title">Companies That Hire Through LCC</div>
+    </div>
+    <div class="partners-logos reveal">
+      <div class="partner-logo">TechCorp</div>
+      <div class="partner-logo">MediCare+</div>
+      <div class="partner-logo">FinServe</div>
+      <div class="partner-logo">FinServe</div>
+      <div class="partner-logo">RetailMax</div>
+      <div class="partner-logo">EduBridge</div>
+      <div class="partner-logo">LogiPro</div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="block cream testimonials-section">
+    <div class="section-head">
+      <div class="section-tag">Success Stories</div>
+      <div class="section-title">What Our Clients & Candidates Say</div>
+    
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card reveal">
+        <p>"LCC placed our entire sales team in under 3 weeks. Quality candidates, zero hassle."</p>
+        <div class="testimonial-author"><strong>Rajesh M.</strong> — HR Head, BFSI</div>
+      </div>
+      <div class="testimonial-card reveal">
+        <p>"From campus to corporate — LCC training and placement changed my career trajectory."</p>
+        <div class="testimonial-author"><strong>Priya S.</strong> — Software Developer</div>
+      </div>
+      <div class="testimonial-card reveal">
+        <p>"Their consultancy model means we get pre-screened talent, not hundreds of irrelevant CVs."</p>
+        <div class="testimonial-author"><strong>Dr. Anil K.</strong> — Hospital Administrator</div>
+      </div>
+    </div>
+  </section>
+
   <!-- ========== QUOTE BANNER ========== -->
   <section class="quote-banner">
     <blockquote>
@@ -213,6 +296,7 @@
   <script src="js/api.js"></script>
   <script src="js/include.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/home-jobs.js"></script>
   <script src="js/gsap-animations.js"></script>
 </body>
 </html>

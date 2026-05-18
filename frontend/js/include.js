@@ -27,6 +27,7 @@
         <li><a href="industries.html" data-nav="industries">Industries</a></li>
         <li><a href="how-it-works.html" data-nav="how">How It Works</a></li>
         <li><a href="jobs.html" data-nav="jobs">Jobs</a></li>
+        <li><a href="blog.html" data-nav="blog">Blog</a></li>
         <li><a href="contact.html" data-nav="contact">Contact</a></li>
         <li id="navAuthSlot"></li>
       </ul>
@@ -42,6 +43,7 @@
       <a href="industries.html" data-nav="industries">Industries</a>
       <a href="how-it-works.html" data-nav="how">How It Works</a>
       <a href="jobs.html" data-nav="jobs">Jobs</a>
+      <a href="blog.html" data-nav="blog">Blog</a>
       <a href="reviews.html" data-nav="reviews">Reviews</a>
       <a href="contact.html" data-nav="contact">Contact</a>
       <div id="mobileAuthSlot"></div>
@@ -67,16 +69,20 @@
             <li><a href="services.html">Services</a></li>
             <li><a href="industries.html">Industries</a></li>
             <li><a href="how-it-works.html">How It Works</a></li>
+            <li><a href="blog.html">Blog</a></li>
             <li><a href="reviews.html">Reviews</a></li>
           </ul>
         </div>
 
+        
+        
         <div class="footer-col">
           <h4>For You</h4>
           <ul>
             <li><a href="jobs.html">Browse Jobs</a></li>
+            <li><a href="request-hiring.html">Request Hiring Support</a></li>
             <li><a href="signup.html?role=jobseeker">Sign Up — Candidate</a></li>
-            <li><a href="signup.html?role=employer">Sign Up — Employer</a></li>
+            <li><a href="signup.html?role=employer">Hiring Partner Sign Up</a></li>
             <li><a href="login.html">Sign In</a></li>
             <li><a href="contact.html">Contact</a></li>
           </ul>
@@ -120,7 +126,9 @@
 
     if (isAuthed) {
       const u = LCCApi.getUser() || {};
-      const dashHref = u.role === 'employer' ? 'dashboard-employer.html' : 'dashboard-jobseeker.html';
+      let dashHref = 'dashboard-jobseeker.html';
+      if (u.role === 'employer') dashHref = 'dashboard-employer.html';
+      if (u.role === 'admin') dashHref = 'dashboard-admin.html';
       if (desktopSlot) {
         desktopSlot.innerHTML =
           '<a href="' + dashHref + '" class="nav-cta" data-nav="dashboard">Dashboard</a>';

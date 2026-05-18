@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Job | LCC Admin</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+</head>
+<body data-page="dashboard" class="admin-body">
+  <div data-include="header"></div>
+  <section class="app-shell admin-shell">
+    <aside id="adminSidebar" class="admin-sidebar"></aside>
+    <div class="admin-main">
+      <div class="app-head">
+        <div><h1>Edit Job</h1><div class="sub" id="pageSub"></div></div>
+        <div id="authStrip"></div>
+      </div>
+      
+      <div style="margin-bottom:16px;"><a href="admin-jobs.html" class="btn-secondary btn-sm">Back to Jobs</a></div>
+      <div class="card-block">
+        <form id="jobForm">
+          <div class="form-row">
+            <div class="form-group"><label>Title *</label><input name="title" required /></div>
+            <div class="form-group"><label>Company *</label><input name="company" required /></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Location *</label><input name="location" required /></div>
+            <div class="form-group"><label>Salary</label><input name="salary" placeholder="5-8 LPA" /></div>
+          </div>
+          
+          
+          <div class="form-row">
+            <div class="form-group"><label>Type</label><select name="type"><option>Full-Time</option><option>Part-Time</option><option>Contract</option><option>Temporary</option><option>Internship</option></select></div>
+            <div class="form-group"><label>Industry</label><input name="industry" /></div>
+          </div>
+          <div class="form-row">
+            <label>Experience</label><input name="experience" /></div>
+            <div class="form-group"><label>Skills (comma separated)</label><input name="skills" /></div>
+          </div>
+          <div class="form-group"><label>Description *</label><textarea name="description" required style="min-height:180px;"></textarea></div>
+          <div class="form-row">
+            <label><input type="checkbox" name="isFeatured" id="isFeatured" /> Featured job</label>
+            <label><input type="checkbox" name="isActive" id="isActive" checked /> Active / accepting applications</label>
+          </div>
+          <button type="submit" class="btn-primary" id="submitBtn">Save Job</button>
+        </form>
+      </div>
+    </div>
+  </section>
+  <div data-include="footer"></div>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/include.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard-common.js"></script>
+  <script src="js/admin-common.js"></script>
+  <script src="js/admin-job-edit.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard | LCC Admin</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+</head>
+<body data-page="dashboard" class="admin-body">
+  <div data-include="header"></div>
+  <section class="app-shell admin-shell">
+    <aside id="adminSidebar" class="admin-sidebar"></aside>
+    <div class="admin-main">
+      <div class="app-head">
+        <div><h1>Admin Dashboard</h1><div class="sub" id="pageSub"></div></div>
+        <div id="authStrip"></div>
+      </div>
+      
+      <div class="stats-grid" id="adminStats">
+        <div class="stat-block"><div class="num" id="sJobs">-</div><div class="label">Jobs</div></div>
+        <div class="stat-block"><div class="num" id="sApps">-</div><div class="label">Applications</div></div>
+        <div class="stat-block"><div class="num" id="sBlogs">-</div><div class="label">Blog Posts</div></div>
+        <div class="stat-block"><div class="num" id="sHire">-</div><div class="label">Hiring Requests</div></div>
+      </div>
+      <div class="admin-quick-links" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;">
+        <a href="admin-jobs.html" class="btn-primary">Manage Jobs</a>
+        <a href="admin-applications.html" class="btn-secondary">Applications</a>
+        <a href="admin-blogs.html" class="btn-secondary">Blog</a>
+        <a href="admin-hiring-requests.html" class="btn-secondary">Hiring Requests</a>
+      </div>
+    </div>
+  </section>
+  <div data-include="footer"></div>
+  <div id="toast" class="toast"></div>
+  <script src="js/api.js"></script>
+  <script src="js/include.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard-common.js"></script>
+  <script src="js/admin-common.js"></script>
+  <script src="js/admin-dashboard.js"></script>
+</body>
+</html>

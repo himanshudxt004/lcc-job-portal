@@ -509,6 +509,78 @@
 .toast.error { background: #B91C1C; }
 .toast.ok    { background: #1B5E40; }
 
+/* ---------- Admin layout ---------- */
+.admin-body .app-shell.admin-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 0;
+  padding-top: 88px;
+}
+.admin-sidebar {
+  background: var(--navy);
+  color: #fff;
+  min-height: calc(100vh - 88px);
+  padding: 24px 0;
+}
+.admin-sidebar-inner {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 0 16px;
+}
+.admin-brand {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--gold);
+  margin-bottom: 24px;
+  padding: 0 12px;
+}
+.admin-nav { display: flex; flex-direction: column; gap: 4px; flex: 1; }
+.admin-nav-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: rgba(255,255,255,0.85);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background 0.2s, color 0.2s;
+}
+.admin-nav-link:hover, .admin-nav-link.active {
+  background: rgba(201,168,76,0.15);
+  color: var(--gold);
+}
+.admin-main { padding: 32px 5% 80px; background: var(--cream); min-width: 0; }
+.badge-gold {
+  font-size: 10px;
+  background: rgba(201,168,76,0.2);
+  color: var(--gold-dark);
+  padding: 2px 8px;
+  border-radius: 99px;
+  font-weight: 600;
+}
+.status-pill {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 12px;
+  border-radius: 99px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.status-new { background: #DBEAFE; color: #1D4ED8; }
+.status-contacted { background: #FEF3C7; color: #B45309; }
+.status-in_progress { background: #E0E7FF; color: #4338CA; }
+.status-closed { background: #E5E7EB; color: #374151; }
+
+@media (max-width: 900px) {
+  .admin-body .app-shell.admin-shell { grid-template-columns: 1fr; }
+  .admin-sidebar { min-height: auto; }
+  .admin-nav { flex-direction: row; flex-wrap: wrap; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .filter-bar {

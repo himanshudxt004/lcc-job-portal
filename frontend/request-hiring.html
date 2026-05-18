@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Request Hiring Support | LCC</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+</head>
+<body data-page="services">
+
+  
+  <div data-include="header"></div>
+
+  <section class="app-shell">
+    <div class="app-container" style="max-width:760px;">
+
+      <div style="margin-bottom: 24px;">
+        <a href="index.html" class="btn-secondary btn-sm" id="backLink">Back</a>
+      </div>
+
+      <div class="app-head">
+        <div>
+          <h1 id="pageTitle">Request Hiring Support</h1>
+          <div class="sub">Tell our recruitment team what you need. We respond within 2 business hours.</div>
+        </div>
+      </div>
+
+      <div class="card-block">
+        <form id="hiringForm">
+          <div class="form-group">
+            <label>Request Type *</label>
+            <select name="type" id="reqType" required>
+              <option value="hiring">Request Hiring</option>
+              <option value="consultation">Book Consultation</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            
+            <div class="form-group">
+              <label for="hr-company">Company Name *</label>
+              <input id="hr-company" name="companyName" type="text" placeholder="Your organisation" required />
+            </div>
+            <div class="form-group">
+              <label for="hr-contact">Contact Person *</label>
+              <input id="hr-contact" name="contactName" type="text" placeholder="Full name" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="hr-email">Email *</label>
+              <input id="hr-email" name="email" type="email" placeholder="hr@company.com" required />
+            </div>
+            <div class="form-group">
+              <label for="hr-phone">Phone</label>
+              <input id="hr-phone" name="phone" type="tel" placeholder="+91 ..." />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="hr-roles">Roles / Positions Needed</label>
+              <input id="hr-roles" name="rolesNeeded" type="text" placeholder="e.g. 3 Sales Executives" />
+            </div>
+            <div class="form-group">
+              <label for="hr-headcount">Headcount</label>
+              <input id="hr-headcount" name="headcount" type="text" placeholder="e.g. 5 positions" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="hr-industry">Industry</label>
+              <select id="hr-industry" name="industry">
+                <option value="">-- Select --</option>
+                <option>Information Technology</option>
+                <option>Banking and Financial Services</option>
+                <option>Healthcare and Life Sciences</option>
+                <option>Retail and Consumer Goods</option>
+                <option>Manufacturing</option>
+                <option>Education</option>
+                <option>Other</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="hr-location">Location</label>
+              <input id="hr-location" name="location" type="text" placeholder="Lucknow / Pan-India" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="hr-budget">Budget / CTC Range (optional)</label>
+            <input id="hr-budget" name="budget" type="text" placeholder="e.g. 3-5 LPA per role" />
+          </div>
+
+          <div class="form-group">
+            <label for="hr-message">Hiring Requirements *</label>
+            <textarea id="hr-message" name="message" placeholder="Describe roles, timeline, must-have skills..." required style="min-height:160px;"></textarea>
+          </div>
+
+          
+          <div style="display:flex; gap:12px; align-items:center; flex-wrap:wrap;">
+            <button type="submit" class="btn-primary" id="submitBtn">Submit Request</button>
+            <a href="contact.html" class="btn-secondary">Contact Us</a>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <div data-include="footer"></div>
+  <div id="toast" class="toast"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/include.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard-common.js"></script>
+  <script src="js/request-hiring.js"></script>
+</body>
+</html>

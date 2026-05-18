@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Applicant Management | LCC Admin</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+</head>
+<body data-page="dashboard" class="admin-body">
+  <div data-include="header"></div>
+  <section class="app-shell admin-shell">
+    <aside id="adminSidebar" class="admin-sidebar"></aside>
+    <div class="admin-main">
+      <div class="app-head">
+        <div><h1>Applicant Management</h1><div class="sub" id="pageSub"></div></div>
+        <div id="authStrip"></div>
+      </div>
+      
+      <div class="card-block" style="margin-bottom:16px;">
+        <label>Filter by job</label>
+        <select id="filterJob"><option value="">All jobs</option></select>
+        <button id="refreshApps" class="btn-secondary btn-sm" style="margin-left:8px;">Refresh</button>
+      </div>
+      <div id="appsList" class="row-list"><div class="loader">Loading...</div></div>
+    </div>
+  </section>
+  <div data-include="footer"></div>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/include.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard-common.js"></script>
+  <script src="js/admin-common.js"></script>
+  <script src="js/admin-applications.js"></script>
+</body>
+</html>

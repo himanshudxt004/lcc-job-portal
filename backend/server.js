@@ -13,9 +13,12 @@ const rateLimit   = require('express-rate-limit');
 const connectDB    = require('./config/db');
 const errorHandler = require('./middleware/errorHandler');
 
-const authRoutes        = require('./routes/authRoutes');
-const jobRoutes         = require('./routes/jobRoutes');
-const applicationRoutes = require('./routes/applicationRoutes');
+const authRoutes            = require('./routes/authRoutes');
+const jobRoutes             = require('./routes/jobRoutes');
+const applicationRoutes     = require('./routes/applicationRoutes');
+const hiringRequestRoutes   = require('./routes/hiringRequestRoutes');
+const blogRoutes            = require('./routes/blogRoutes');
+const adminRoutes           = require('./routes/adminRoutes');
 
 const app = express();
 
@@ -80,9 +83,12 @@ app.get('/api/health', (req, res) => {
   });
 });
 
-app.use('/api/auth',          authRoutes);
-app.use('/api/jobs',          jobRoutes);
-app.use('/api',               applicationRoutes); // /api/apply, /api/applications/*
+app.use('/api/auth',              authRoutes);
+app.use('/api/jobs',              jobRoutes);
+app.use('/api/hiring-requests',   hiringRequestRoutes);
+app.use('/api/blogs',             blogRoutes);
+app.use('/api/admin',             adminRoutes);
+app.use('/api',                   applicationRoutes); // /api/apply, /api/applications/*
 
 // ---------- 404 ----------
 app.use((req, res, next) => {

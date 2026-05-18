@@ -1,10 +1,10 @@
 const express = require('express');
 const { body } = require('express-validator');
 
-const validate         = require('../middleware/validate');
-const { protect }      = require('../middleware/auth');
-const { requireRole }  = require('../middleware/role');
-const jobController    = require('../controllers/jobController');
+const validate        = require('../middleware/validate');
+const { protect }     = require('../middleware/auth');
+const { requireRole } = require('../middleware/role');
+const jobController   = require('../controllers/jobController');
 
 const router = express.Router();
 
@@ -17,18 +17,20 @@ const jobValidators = [
 ];
 
 /* Public */
-router.get('/',    jobController.list);
+router.get('/', jobController.list);
 
-/* Employer-only — list mine. Must be BEFORE /:id route */
+/* Admin — must be BEFORE /:id */
+router.get('/admin/all', protect, requireRole('admin'), jobController.adminList);
+
 router.get('/employer/mine', protect, requireRole('employer'), jobController.mine);
 
 router.get('/:id', jobController.getOne);
 
-/* Employer-only writes */
+/* Admin writes */
 router.post(
   '/',
   protect,
-  requireRole('employer'),
+  requireRole('admin'),
   jobValidators,
   validate,
   jobController.create
@@ -37,14 +39,14 @@ router.post(
 router.put(
   '/:id',
   protect,
-  requireRole('employer'),
+  requireRole('admin'),
   jobController.update
 );
 
 router.delete(
   '/:id',
   protect,
-  requireRole('employer'),
+  requireRole('admin'),
   jobController.remove
 );
 

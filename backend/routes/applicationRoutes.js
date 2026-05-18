@@ -33,19 +33,19 @@ router.get(
   applicationController.userApplications
 );
 
-/* Applicants on my jobs — employer */
+/* All applicants — admin */
 router.get(
-  '/applications/employer',
+  '/applications/admin',
   protect,
-  requireRole('employer'),
-  applicationController.employerApplications
+  requireRole('admin'),
+  applicationController.adminApplications
 );
 
-/* Status update — employer */
+/* Status update — admin */
 router.patch(
   '/applications/:id/status',
   protect,
-  requireRole('employer'),
+  requireRole('admin'),
   applicationController.updateStatus
 );
 

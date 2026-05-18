@@ -1,14 +1,19 @@
 /* ============================================================
-   LCC Job Portal — Seed Script
-   Creates a sample employer + jobseeker + a handful of jobs.
+   LCC Consultancy Platform — Seed Script
+   Creates admin + sample employer + jobseeker + jobs + blogs.
    Run with:  npm run seed
    ============================================================ */
 require('dotenv').config();
 const mongoose = require('mongoose');
 
-const User        = require('../models/User');
-const Job         = require('../models/Job');
-const Application = require('../models/Application');
+const User          = require('../models/User');
+const Job           = require('../models/Job');
+const Application   = require('../models/Application');
+const Blog          = require('../models/Blog');
+const HiringRequest = require('../models/HiringRequest');
+
+const ADMIN_EMAIL    = process.env.ADMIN_EMAIL || 'admin@lcc.com';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin1234';
 
 async function run() {
   const uri = process.env.MONGO_URI;
@@ -20,14 +25,29 @@ async function run() {
   await mongoose.connect(uri);
   console.log('✓ Connected to MongoDB');
 
+  const seedEmails = [ADMIN_EMAIL, 'hr@lccdemo.com', 'fresher@lccdemo.com'];
+
   console.log('Cleaning existing seed data...');
+  const seedUsers = await User.find({ email: { $in: seedEmails } }).select('_id');
+  const seedUserIds = seedUsers.map((u) => u._id);
+
   await Promise.all([
-    User.deleteMany({ email: { $in: ['hr@lccdemo.com', 'fresher@lccdemo.com'] } }),
-    Job.deleteMany({ company: 'LCC Demo Pvt Ltd' }),
-    Application.deleteMany({})
+    User.deleteMany({ email: { $in: seedEmails } }),
+    Job.deleteMany({ $or: [{ company: 'LCC Demo Pvt Ltd' }, { postedBy: { $in: seedUserIds } }] }),
+    Blog.deleteMany({ slug: { $in: ['bridging-college-to-career', 'speed-to-hire-insights', 'placement-success-story'] } }),
+    Application.deleteMany({}),
+    HiringRequest.deleteMany({ email: 'hr@lccdemo.com' })
   ]);
 
-  // Sample users
+  const admin = await new User({
+    name: 'LCC Admin',
+    email: ADMIN_EMAIL,
+    password: ADMIN_PASSWORD,
+    role: 'admin',
+    phone: '+91 91961 09055',
+    location: 'Lucknow'
+  }).save();
+
   const employer = await new User({
     name: 'LCC Demo HR',
     email: 'hr@lccdemo.com',
@@ -49,6 +69,7 @@ async function run() {
   }).save();
 
   console.log('✓ Users created');
+  console.log(`   Admin:     ${ADMIN_EMAIL} / ${ADMIN_PASSWORD}`);
   console.log('   Employer:  hr@lccdemo.com / demo1234');
   console.log('   Jobseeker: fresher@lccdemo.com / demo1234');
 
@@ -61,6 +82,7 @@ async function run() {
       industry: 'Information Technology',
       experience: '1-3 years',
       skills: ['MongoDB', 'Express', 'React', 'Node.js'],
+      isFeatured: true,
       description:
         'Build and ship features end-to-end using the MERN stack. Collaborate with designers and PMs to deliver delightful user experiences. Own modules from API design to UI.'
     },
@@ -72,6 +94,7 @@ async function run() {
       industry: 'Banking & Financial Services',
       experience: '0-2 years',
       skills: ['Sales', 'Communication', 'Banking products'],
+      isFeatured: true,
       description:
         'Drive customer acquisition for retail banking products. Manage portfolio of HNI clients, cross-sell investments, loans and insurance. Excellent grooming required.'
     },
@@ -105,6 +128,7 @@ async function run() {
       industry: 'Information Technology',
       experience: 'Fresher',
       skills: ['SQL', 'Excel', 'Power BI'],
+      isFeatured: true,
       description:
         '3-month internship with conversion-to-FTE. Work on dashboards, ad-hoc analysis and data-quality projects. Learn from senior analysts.'
     },
@@ -122,9 +146,51 @@ async function run() {
   ];
 
   const inserted = await Job.insertMany(
-    jobsData.map((j) => ({ ...j, company: employer.company, employerId: employer._id }))
+    jobsData.map((j) => ({
+      ...j,
+      company: 'LCC Partner Network',
+      postedBy: admin._id,
+      employerId: null
+    }))
   );
-  console.log(`✓ ${inserted.length} jobs created`);
+  console.log(`✓ ${inserted.length} jobs created (admin-managed)`);
+
+  const blogsData = [
+    {
+      title: 'Bridging College to Career: The LCC Approach',
+      slug: 'bridging-college-to-career',
+      excerpt: 'How structured training and recruitment support help fresh graduates become industry-ready professionals.',
+      category: 'Career Tips',
+      isFeatured: true,
+      isPublished: true,
+      publishedAt: new Date(),
+      authorId: admin._id,
+      content: '<p>At Lead Connects Career, we believe India\'s youth has immense potential — they need the right platform, mentorship, and opportunities.</p><p>Our dual model of recruitment consultancy and job-support training ensures candidates are not just placed, but prepared.</p>'
+    },
+    {
+      title: 'Speed-to-Hire: What Employers Should Expect from a Consultancy',
+      slug: 'speed-to-hire-insights',
+      excerpt: 'Why premium recruitment partners deliver faster, higher-quality hires than generic job boards.',
+      category: 'Hiring Insights',
+      isPublished: true,
+      publishedAt: new Date(),
+      authorId: admin._id,
+      content: '<p>When you partner with a consultancy like LCC, you gain pre-screened talent pipelines, domain expertise, and dedicated account management.</p><p>Average time-to-hire across our client base: 14 days.</p>'
+    },
+    {
+      title: 'Placement Success: From Campus to Corporate in 30 Days',
+      slug: 'placement-success-story',
+      excerpt: 'A recent success story placing MERN developers for a growing tech firm in Lucknow.',
+      category: 'Success Stories',
+      isPublished: true,
+      publishedAt: new Date(),
+      authorId: admin._id,
+      content: '<p>Within 30 days of engagement, LCC delivered 4 qualified MERN developers — all still with the client after 6 months.</p><p>This is the power of consultancy-led hiring.</p>'
+    }
+  ];
+
+  await Blog.insertMany(blogsData);
+  console.log(`✓ ${blogsData.length} blog posts created`);
 
   await mongoose.disconnect();
   console.log('✓ Seed complete. Disconnected.');

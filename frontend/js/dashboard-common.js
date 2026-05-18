@@ -34,17 +34,21 @@
    * Require auth + matching role. Redirects if missing.
    * Returns the user, or null on redirect.
    */
+  function dashboardForRole(r) {
+    if (r === 'admin') return 'dashboard-admin.html';
+    if (r === 'employer') return 'dashboard-employer.html';
+    return 'dashboard-jobseeker.html';
+  }
+
   function requireAuth(role) {
     if (!LCCApi.isAuthed()) {
-      window.location.replace('login.html?role=' + (role || 'jobseeker'));
+      const q = role === 'admin' ? '?admin=1' : '?role=' + (role || 'jobseeker');
+      window.location.replace('login.html' + q);
       return null;
     }
     const u = LCCApi.getUser();
     if (role && u && u.role !== role) {
-      // Role mismatch — kick to correct dashboard
-      window.location.replace(u.role === 'employer'
-        ? 'dashboard-employer.html'
-        : 'dashboard-jobseeker.html');
+      window.location.replace(dashboardForRole(u.role));
       return null;
     }
     return u;
@@ -75,6 +79,7 @@
     escapeHTML,
     showToast,
     timeAgo,
+    dashboardForRole,
     requireAuth,
     renderUserChip
   };

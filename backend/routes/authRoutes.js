@@ -27,7 +27,7 @@ router.post(
   [
     body('email').isEmail().withMessage('Valid email required.').normalizeEmail(),
     body('password').notEmpty().withMessage('Password is required.'),
-    body('role').optional().isIn(['jobseeker', 'employer'])
+    body('role').optional().isIn(['jobseeker', 'employer', 'admin'])
   ],
   validate,
   authController.login

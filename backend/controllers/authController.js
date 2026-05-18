@@ -14,6 +14,10 @@ exports.signup = async (req, res, next) => {
   try {
     const { name, email, password, role, phone, company } = req.body;
 
+    if (role === 'admin') {
+      return res.status(403).json({ ok: false, message: 'Admin accounts cannot be created via signup.' });
+    }
+
     const exists = await User.findOne({ email: String(email).toLowerCase() });
     if (exists) {
       return res.status(409).json({ ok: false, message: 'Email already registered.' });

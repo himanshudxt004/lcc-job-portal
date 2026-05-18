@@ -3,68 +3,56 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Employer Dashboard | LCC</title>
+  <title>Employer Portal | LCC</title>
   <link rel="stylesheet" href="css/style.css" />
   <link rel="stylesheet" href="css/dashboard.css" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 </head>
 <body data-page="dashboard">
-
+  
   <div data-include="header"></div>
-
   <section class="app-shell">
     <div class="app-container">
-
       <div class="app-head">
         <div>
-          <h1 id="welcomeTitle">Employer Dashboard</h1>
-          <div class="sub">Post jobs, manage listings, and review applicants — all in one place.</div>
+          <h1 id="welcomeTitle">Hiring Partner Portal</h1>
+          <div class="sub">Submit hiring requirements and track your requests with LCC recruitment team. We manage candidates.
+          <div class="sub">Submit hiring requirements and track your requests with LCC recruitment team. We manage candidates.</div>
         </div>
         <div id="authStrip"></div>
       </div>
-
-      <!-- Stats -->
       <div class="stats-grid">
-        <div class="stat-block"><div class="num" id="statJobs">0</div><div class="label">Jobs Posted</div></div>
-        <div class="stat-block"><div class="num" id="statActive">0</div><div class="label">Active</div></div>
-        <div class="stat-block"><div class="num" id="statApplicants">0</div><div class="label">Applicants</div></div>
-        <div class="stat-block"><div class="num" id="statShortlisted">0</div><div class="label">Shortlisted</div></div>
+        <div class="stat-block"><div class="num" id="statTotal">0</div><div class="label">Total Requests</div></div>
+        <div class="stat-block"><div class="num" id="statNew">0</div><div class="label">New</div></div>
+        <div class="stat-block">0</div><div class="label">In Progress</div></div>
+        <div class="stat-block">0</div><div class="label">Closed</div></div>
       </div>
-
-      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:14px;">
-        <h2 style="font-family:var(--font-display); font-size:24px; color:var(--navy); font-weight:800;">My Jobs</h2>
-        <a href="post-job.html" class="btn-primary">+ Post New Job</a>
-      </div>
-
-      <div id="myJobs" class="row-list" style="margin-bottom:32px;">
-        <div class="loader">Loading your jobs...</div>
-      </div>
-
-      <h2 style="font-family:var(--font-display); font-size:24px; color:var(--navy); font-weight:800; margin-bottom:14px;">Applicants</h2>
-
-      <div class="card-block">
-        <div class="card-sub">Filter applicants by job and update their status as you review them.</div>
-        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:end; margin-bottom:18px;">
-          <div style="flex:1; min-width:240px;">
-            <label for="appFilterJob" style="display:block;font-size:11px;font-weight:600;color:var(--gray);letter-spacing:0.08em;text-transform:uppercase;margin-bottom:6px;">Filter by Job</label>
-            <select id="appFilterJob"><option value="">All Jobs</option></select>
-          </div>
-          <button id="appRefresh" class="btn-secondary btn-sm">Refresh</button>
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
+        <h2 style="font-family:var(--font-display);font-size:24px;color:var(--navy);font-weight:800;">My Hiring Requests</h2>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          <a href="request-hiring.html" class="btn-primary">+ Request Hiring</a>
+          <a href="request-hiring.html?type=consultation" class="btn-secondary">Book Consultation</a>
         </div>
-
-        <div id="applicantsList" class="row-list">
-          <div class="loader">Loading applicants...</div>
+      </div>
+      <div id="requestsList" class="row-list" style="margin-bottom:32px;"><div class="loader">Loading...</div></div>
+      <div class="card-block" style="background:linear-gradient(135deg,var(--navy) 0%,#152d52 100%);color:#fff;border:none;">
+        <h3 style="font-family:var(--font-display);font-size:20px;margin-bottom:8px;color:var(--gold);">Need immediate help?</h3>
+        <p style="font-size:14px;opacity:0.9;margin-bottom:16px;">Mon-Sat, 10 AM - 7 PM</p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;">
+          <a href="tel:+919196109055" class="btn-primary">Call Us</a>
+          <a href="https://wa.me/919196109055" class="btn-outline" target="_blank" rel="noopener">WhatsApp</a>
+          <a href="contact.html" class="btn-outline">Contact</a>
+        
+        
         </div>
       </div>
     </div>
   </section>
-
   <div data-include="footer"></div>
   <div id="toast" class="toast"></div>
-
+  <script src="js/api.js"></script>
   <script src="js/include.js"></script>
   <script src="js/main.js"></script>
-  <script src="js/api.js"></script>
   <script src="js/dashboard-common.js"></script>
   <script src="js/dashboard-employer.js"></script>
 </body>

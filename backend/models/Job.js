@@ -34,7 +34,17 @@ const jobSchema = new mongoose.Schema(
     employerId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'User',
-      required: true,
+      default: null,
+      index: true
+    },
+    postedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
+      default: null
+    },
+    isFeatured: {
+      type: Boolean,
+      default: false,
       index: true
     },
     // Useful auxiliary fields

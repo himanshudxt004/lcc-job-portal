@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Job Management | LCC Admin</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/dashboard.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&amp;family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+</head>
+<body data-page="dashboard" class="admin-body">
+  <div data-include="header"></div>
+  <section class="app-shell admin-shell">
+    <aside id="adminSidebar" class="admin-sidebar"></aside>
+    <div class="admin-main">
+      <div class="app-head">
+        <div><h1>Job Management</h1><div class="sub" id="pageSub"></div></div>
+        <div id="authStrip"></div>
+      </div>
+      
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;margin-bottom:16px;">
+        <p class="card-sub" style="margin:0;">Add, edit and feature jobs published by LCC.</p>
+        <a href="admin-job-edit.html" class="btn-primary">+ Add Job</a>
+      </div>
+      <div id="jobsList" class="row-list"><div class="loader">Loading jobs...</div></div>
+    </div>
+  </section>
+  <div data-include="footer"></div>
+  </div>
+  <script src="js/api.js"></script>
+  <script src="js/include.js"></script>
+  <script src="js/main.js"></script>
+  <script src="js/dashboard-common.js"></script>
+  <script src="js/admin-common.js"></script>
+  <script src="js/admin-jobs.js"></script>
+</body>
+</html>

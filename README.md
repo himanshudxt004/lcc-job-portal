@@ -1,6 +1,6 @@
 # Lead Connects Career (LCC) — Full-Stack Job Portal
 
-A complete recruitment + training platform for **Lead Connects Career Pvt Ltd** (LCC) — public marketing site, role-based authentication, employer job-posting, candidate applications and resume uploads.
+A **premium recruitment consultancy platform** for **Lead Connects Career Pvt Ltd** (LCC) — public marketing site, admin-managed jobs & blog, candidate applications, and an employer **hiring-request** portal (not self-serve job posting).
 
 > **Mission:** Empowering India's next generation of professionals — bridging the gap between college and career.
 
@@ -24,8 +24,11 @@ A complete recruitment + training platform for **Lead Connects Career Pvt Ltd** 
 - `jobs.html` — Public job listings with filters (search / location / industry / type) + pagination
 - `job-details.html` — Single job view + Apply form (resume upload + cover note)
 - `dashboard-jobseeker.html` — Profile, resume, application history, status tracking
-- `dashboard-employer.html` — My jobs CRUD + applicants per job + status management
-- `post-job.html` — Create / edit job posting (employer)
+- `blog.html` / `blog-post.html` — Public blog with categories and featured posts
+- `request-hiring.html` — Submit hiring / consultation requests (employers & guests)
+- `dashboard-employer.html` — Hiring partner portal (track hiring requests)
+- `dashboard-admin.html` + `admin-*.html` — Admin panel (jobs, applications, blogs, hiring requests)
+- `post-job.html` — Redirects to `request-hiring.html`
 - `404.html` — Friendly error page
 
 **Shared assets:**
@@ -85,14 +88,34 @@ backend/
 | POST   | `/api/auth/resume` (multipart) | ✓ | jobseeker | Upload resume |
 | GET    | `/api/jobs` | — | — | List + filters: `search,location,industry,type,page,limit` |
 | GET    | `/api/jobs/:id` | — | — | Single job |
-| GET    | `/api/jobs/employer/mine` | ✓ | employer | My posted jobs |
-| POST   | `/api/jobs` | ✓ | employer | Create |
-| PUT    | `/api/jobs/:id` | ✓ | employer (owner) | Update |
-| DELETE | `/api/jobs/:id` | ✓ | employer (owner) | Delete (cascades applications) |
+| GET    | `/api/jobs/admin/all` | ✓ | admin | All jobs (incl. inactive) |
+| GET    | `/api/jobs?featured=true` | — | — | Featured jobs for homepage |
+| POST   | `/api/jobs` | ✓ | admin | Create job |
+| PUT    | `/api/jobs/:id` | ✓ | admin | Update job |
+| DELETE | `/api/jobs/:id` | ✓ | admin | Delete job |
+| GET    | `/api/jobs/employer/mine` | ✓ | employer | Deprecated (403) |
+| POST   | `/api/hiring-requests` | optional | any/employer | Submit hiring request |
+| GET    | `/api/hiring-requests/mine` | ✓ | employer | My hiring requests |
+| GET    | `/api/hiring-requests` | ✓ | admin | All hiring requests |
+| PATCH  | `/api/hiring-requests/:id/status` | ✓ | admin | Update request status |
+| GET    | `/api/blogs` | — | — | Published blog list |
+| GET    | `/api/blogs/:slug` | — | — | Single published post |
+| GET/POST/PUT/DELETE | `/api/blogs/...` | ✓ | admin | Blog CRUD |
+| GET    | `/api/admin/stats` | ✓ | admin | Dashboard counts |
 | POST   | `/api/apply` (multipart) | ✓ | jobseeker | Apply to a job (`jobId`, `coverNote`, `resume` file optional) |
 | GET    | `/api/applications/user` | ✓ | jobseeker | My applications |
-| GET    | `/api/applications/employer?jobId=` | ✓ | employer | Applicants on my jobs |
-| PATCH  | `/api/applications/:id/status` | ✓ | employer | `pending\|reviewing\|shortlisted\|rejected\|hired` |
+| GET    | `/api/applications/admin?jobId=` | ✓ | admin | All applicants |
+| PATCH  | `/api/applications/:id/status` | ✓ | admin | `pending\|reviewing\|shortlisted\|rejected\|hired` |
+
+### Admin account (seed only)
+
+After `npm run seed` in `backend/`:
+
+| Email | Password | Role |
+|---|---|---|
+| `admin@lcc.com` | `admin1234` (or `ADMIN_PASSWORD` in `.env`) | admin |
+
+Admin login: `login.html?admin=1` — public signup cannot create admin accounts.
 
 ### Security
 - Passwords hashed with **bcrypt** (10 rounds).

@@ -91,19 +91,17 @@ exports.userApplications = async (req, res, next) => {
   }
 };
 
-/* ---------- GET /api/applications/employer (employer — applicants for my jobs) ---------- */
-exports.employerApplications = async (req, res, next) => {
+/* ---------- GET /api/applications/admin (admin — all applicants) ---------- */
+exports.adminApplications = async (req, res, next) => {
   try {
-    const myJobs = await Job.find({ employerId: req.user._id }).select('_id');
-    const jobIds = myJobs.map((j) => j._id);
-
-    const filterJob = req.query.jobId;
-    const where = { jobId: filterJob && jobIds.some((id) => id.equals(filterJob)) ? filterJob : { $in: jobIds } };
+    const where = {};
+    if (req.query.jobId) where.jobId = req.query.jobId;
+    if (req.query.status) where.status = req.query.status;
 
     const applications = await Application.find(where)
       .sort({ createdAt: -1 })
       .populate('userId', 'name email phone headline location skills resume')
-      .populate('jobId',  'title company location salary type');
+      .populate('jobId', 'title company location salary type industry');
 
     res.json({ ok: true, applications });
   } catch (err) {
@@ -111,7 +109,7 @@ exports.employerApplications = async (req, res, next) => {
   }
 };
 
-/* ---------- PATCH /api/applications/:id/status (employer — update status) ---------- */
+/* ---------- PATCH /api/applications/:id/status (admin) ---------- */
 exports.updateStatus = async (req, res, next) => {
   try {
     const { status } = req.body;
@@ -120,12 +118,9 @@ exports.updateStatus = async (req, res, next) => {
       return res.status(400).json({ ok: false, message: 'Invalid status.' });
     }
 
-    const app = await Application.findById(req.params.id).populate('jobId');
+    const app = await Application.findById(req.params.id);
     if (!app) {
       return res.status(404).json({ ok: false, message: 'Application not found.' });
-    }
-    if (app.jobId.employerId.toString() !== req.user._id.toString()) {
-      return res.status(403).json({ ok: false, message: 'Not your applicant.' });
     }
 
     app.status = status;

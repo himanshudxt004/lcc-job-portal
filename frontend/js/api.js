@@ -118,6 +118,17 @@
       }
       if (file && fileFieldName) fd.append(fileFieldName, file);
       return request(path, { method: 'POST', body: fd });
+    },
+
+    uploadPut: function (path, data, fileFieldName, file) {
+      const fd = new FormData();
+      if (data) {
+        Object.keys(data).forEach(function (k) {
+          if (data[k] !== undefined && data[k] !== null) fd.append(k, data[k]);
+        });
+      }
+      if (file && fileFieldName) fd.append(fileFieldName, file);
+      return request(path, { method: 'PUT', body: fd });
     }
   };
 

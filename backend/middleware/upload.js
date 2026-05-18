@@ -46,4 +46,43 @@ const uploadResume = multer({
   limits: { fileSize: maxMB * 1024 * 1024 }
 });
 
-module.exports = { uploadResume };
+/* Blog cover images */
+const blogDir = path.join(uploadDir, 'blog');
+if (!fs.existsSync(blogDir)) {
+  fs.mkdirSync(blogDir, { recursive: true });
+}
+
+const blogStorage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, blogDir);
+  },
+  filename: function (req, file, cb) {
+    const safeBase = path
+      .basename(file.originalname, path.extname(file.originalname))
+      .replace(/[^a-zA-Z0-9_-]/g, '_')
+      .slice(0, 40);
+    const ext = path.extname(file.originalname).toLowerCase();
+    cb(null, `${Date.now()}_${safeBase}${ext}`);
+  }
+});
+
+const imageExt  = ['.jpg', '.jpeg', '.png', '.webp', '.gif'];
+const imageMime = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+
+function imageFilter(req, file, cb) {
+  const ext = path.extname(file.originalname).toLowerCase();
+  if (imageExt.includes(ext) || imageMime.includes(file.mimetype)) {
+    return cb(null, true);
+  }
+  cb(new Error('Only JPG, PNG, WEBP or GIF images are allowed.'));
+}
+
+const maxImgMB = parseInt(process.env.MAX_BLOG_IMAGE_MB, 10) || 3;
+
+const uploadBlogImage = multer({
+  storage: blogStorage,
+  fileFilter: imageFilter,
+  limits: { fileSize: maxImgMB * 1024 * 1024 }
+});
+
+module.exports = { uploadResume, uploadBlogImage };
